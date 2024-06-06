@@ -2,6 +2,7 @@ package br.com.mfsdevsystem.workshopmongo.services;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,4 +51,22 @@ public class UserService {
 		userRepository.deleteById( id );
 		
 	}
+	
+	public User update(User obj) {
+		
+		User newObj = userRepository.findById( obj.getId()).get();
+		// .findOne(obj.getId());
+		
+		updateData(newObj, obj);
+		return userRepository.save(newObj);
+		
+	}
+
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
+	}
+	
+	
 }
