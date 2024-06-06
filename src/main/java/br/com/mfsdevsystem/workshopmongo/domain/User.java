@@ -6,25 +6,27 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-@Document(collection="user")
-public class User implements Serializable{
+@Document(collection = "user")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-    @Id
-	private String id;	
+
+	@Id
+	private String id;
 	private String name;
 	private String email;
+	private String password;
+	private boolean isAdmin;
+
 	/*
-	@JsonIgnore
-	@OneToMany(mappedBy = "post")
-	private List<Post> posts = new ArrayList<>();
-*/
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy = "post") private List<Post> posts = new ArrayList<>();
+	 */
 	public User() {
-		
+
 	}
-	
+
 	public User(String id, String name, String email) {
 		this.id = id;
 		this.name = name;
@@ -55,12 +57,25 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-	
-/*	
-	public List<Post> getPosts() {
-		return posts;
+	public String getPassword() {
+		return password;
 	}
-*/
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	/*
+	 * public List<Post> getPosts() { return posts; }
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -78,6 +93,4 @@ public class User implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
-	
-	
 }
