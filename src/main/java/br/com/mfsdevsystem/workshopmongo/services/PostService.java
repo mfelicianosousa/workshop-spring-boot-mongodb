@@ -1,5 +1,6 @@
 package br.com.mfsdevsystem.workshopmongo.services;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class PostService {
 		
 	}
 
+	public List<Post> findByTitle(String text){
+		return postRepository.findByTitleContainingIgnoreCase( text );
+	}
 	
 	
 	
